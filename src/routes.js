@@ -14,12 +14,13 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
+routes.use(authMiddleware); // todas as rotas abaixo utilizarão o middleware
+
 //middleware upload single: arquivo unico, file nome do arquivo
 routes.post('/files', upload.single('file'), (req, res) => {
   return res.json({ ok: true });
 });
 
-routes.use(authMiddleware); // todas as rotas abaixo utilizarão o middleware
 routes.put('/users', UserController.update);
 
 export default routes;
