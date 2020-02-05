@@ -23,6 +23,14 @@ class User extends Model {
     return this;
   }
 
+  static associate(models) {
+    // varios tipos..belongto, has one..etc...
+    // faz com que esse trecho do model de usuário pertença ao model de File
+    // ou seja, terei um id de arquivo sendo armazenado no model de usuário
+    // na coluna avatar_id
+    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+  }
+
   checkPassword(password) {
     return bcrypt.compare(password, this.password_hash);
   }
