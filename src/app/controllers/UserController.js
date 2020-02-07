@@ -14,7 +14,7 @@ class UserController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation failed' });
+      return res.status(400).json({ error: 'Dados incorretos!' });
     }
 
     const userExists = await User.findOne({ where: { email: req.body.email } });

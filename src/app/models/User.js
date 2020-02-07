@@ -28,7 +28,7 @@ class User extends Model {
     // faz com que esse trecho do model de usuário pertença ao model de File
     // ou seja, terei um id de arquivo sendo armazenado no model de usuário
     // na coluna avatar_id
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
   checkPassword(password) {
