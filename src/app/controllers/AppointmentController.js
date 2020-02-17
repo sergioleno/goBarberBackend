@@ -66,6 +66,13 @@ class AppointmentController {
         .json({ error: 'You can only create appointments with providers' });
     }
 
+    // verifica se provider não está marcando agendamento consigo mesmo
+    if (provider_id === req.userId) {
+      return res
+        .status(400)
+        .json({ error: 'You canot create an apointment with yourself.' });
+    }
+
     /**
      * parseISO transforma em um objeto date
      * startofhour recebe um objeto date e pega apenas o inicio da hora
